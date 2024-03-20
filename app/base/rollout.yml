@@ -1,27 +1,29 @@
-apiVersion: traefik.containo.us/v1alpha1
-kind: TraefikService
+apiVersion: v1
+kind: Service
 metadata:
   name: canary-rollout
 spec:
-  type: ClusterIP
   selector:
-    app: traefik
+    app: url-shortener
+    version: canary
   ports:
-    - port: 80
-      targetPort: canary-rollout
+    - protocol: TCP
+      port: 80
+      targetPort: 8080
 
 ---
-apiVersion: traefik.containo.us/v1alpha1
-kind: TraefikService
+apiVersion: v1
+kind: Service
 metadata:
   name: stable-rollout
 spec:
-  type: ClusterIP
   selector:
-    app: traefik
+    app: url-shortener
+    version: stable
   ports:
-    - port: 80
-      targetPort: stable-rollout
+    - protocol: TCP
+      port: 80
+      targetPort: 8080
 
 ---
 apiVersion: traefik.containo.us/v1alpha1

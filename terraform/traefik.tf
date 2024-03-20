@@ -216,27 +216,27 @@ resource "kubernetes_service" "traefik_services" {
 #  }
 #}
 
-resource "kubernetes_manifest" "traefik_service" {
-  manifest = {
-    apiVersion = "traefik.containo.us/v1alpha1"
-    kind       = "TraefikService"
-    metadata = {
-      name = "traefik-web-service"
-      namespace = kubernetes_namespace.traefik_ns.metadata[0].name
-    }
-    spec = {
-      weighted = {
-        services = [
-          {
-            name = "stable-rollout"
-            port = 80
-          },
-          {
-            name = "canary-rollout"
-            port = 80
-          }
-        ]
-      }
-    }
-  }
-}
+#resource "kubernetes_manifest" "traefik_service" {
+#  manifest = {
+#    apiVersion = "traefik.containo.us/v1alpha1"
+#    kind       = "TraefikService"
+#    metadata = {
+#      name = "traefik-web-service"
+#      namespace = kubernetes_namespace.traefik_ns.metadata[0].name
+#    }
+#    spec = {
+#      weighted = {
+#        services = [
+#          {
+#            name = "stable-rollout"
+#            port = 80
+#          },
+#          {
+#            name = "canary-rollout"
+#            port = 80
+#          }
+#        ]
+#      }
+#    }
+#  }
+#}

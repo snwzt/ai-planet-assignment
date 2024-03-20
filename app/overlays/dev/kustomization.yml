@@ -4,7 +4,7 @@ resources:
 namespace: dev
 
 patchesStrategicMerge:
-  - patches.yaml
+  - patches.yml
 
 configMapGenerator:
   - name: app-config

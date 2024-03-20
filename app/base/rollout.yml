@@ -19,6 +19,16 @@ spec:
       containers:
         - name: url-shortener-app
           imagePullPolicy: Always
+          envFrom:
+            - configMapRef:
+                name: app-config
+          resources:
+            requests:
+              memory: "16Mi"
+              cpu: "50m"
+            limits:
+              memory: "128Mi"
+              cpu: "100m"
 
   strategy:
     canary:

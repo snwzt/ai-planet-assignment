@@ -150,7 +150,12 @@ resource "kubernetes_deployment" "traefik_deployment" {
           ]
 
           port {
-            name        = "web"
+            name        = "stable-rollout"
+            container_port = 80
+          }
+
+          port {
+            name        = "canary-rollout"
             container_port = 80
           }
 
@@ -184,22 +189,54 @@ resource "kubernetes_service" "traefik_services" {
   }
 }
 
-resource "kubernetes_service" "traefik_web_service" {
-  metadata {
-    name      = "traefik-web-service"
-    namespace = kubernetes_namespace.traefik_ns.metadata[0].name
-  }
+#resource "kubernetes_service" "traefik_web_service" {
+#  metadata {
+#    name      = "traefik-web-service"
+#    namespace = kubernetes_namespace.traefik_ns.metadata[0].name
+#  }
+#
+#  spec {
+#    type = "ClusterIP" # temporary
+#
+#    selector = {
+#      app = "traefik"
+#    }
+#
+#    port {
+#      name        = "stable-rollout"
+#      port        = 80
+#      target_port = "stable-rollout"
+#    }
+#
+#    port {
+#      name        = "canary-rollout"
+#      port        = 80
+#      target_port = "canary-rollout"
+#    }
+#  }
+#}
 
-  spec {
-    type = "ClusterIP" # temporary
-
-    selector = {
-      app = "traefik"
+resource "kubernetes_manifest" "traefik_service" {
+  manifest = {
+    apiVersion = "traefik.containo.us/v1alpha1"
+    kind       = "TraefikService"
+    metadata = {
+      name = "traefik-web-service"
+      namespace = kubernetes_namespace.traefik_ns.metadata[0].name
     }
-
-    port {
-      port        = 80
-      target_port = "web"
+    spec = {
+      weighted = {
+        services = [
+          {
+            name = "stable-rollout"
+            port = 80
+          },
+          {
+            name = "canary-rollout"
+            port = 80
+          }
+        ]
+      }
     }
   }
 }

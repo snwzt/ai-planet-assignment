@@ -29,12 +29,24 @@ spec:
 
   strategy:
     canary:
+      canaryService: canary-rollout
+      stableService: stable-rollout
+      trafficRouting:
+        traefik:
+          weightedTraefikServiceName: traefik-web-service
       steps:
-        - setWeight: 20
+        - setWeight: 30
         - pause: { }
         - setWeight: 40
-        - pause: { duration: 40s }
+        - pause: { duration: 10 }
         - setWeight: 60
-        - pause: { duration: 20s }
+        - pause: { duration: 10 }
         - setWeight: 80
-        - pause: { duration: 20s }
+        - pause: { duration: 10 }
+      analysis:
+        templates:
+          - templateName: success-rate
+            startingStep: 2
+            args:
+              - name: service-url
+                value: "traefik-web-service.traefik.svc.cluster.local"

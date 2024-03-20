@@ -32,14 +32,14 @@ spec:
             limits:
               memory: "128Mi"
               cpu: "100m"
-    strategy:
-      canary:
-        steps:
-          - setWeight: 20
-          - pause: { }
-          - setWeight: 40
-          - pause: { duration: 40s }
-          - setWeight: 60
-          - pause: { duration: 20s }
-          - setWeight: 80
-          - pause: { duration: 20s }
+  strategy:
+    canary:
+      steps:
+        - setWeight: 20
+        - pause: { }
+        - setWeight: 40
+        - pause: { duration: 40s }
+        - setWeight: 60
+        - pause: { duration: 20s }
+        - setWeight: 80
+        - pause: { duration: 20s }

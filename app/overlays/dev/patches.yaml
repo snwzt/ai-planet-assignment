@@ -1,5 +1,19 @@
-apiVersion: apps/v1
-kind: Deployment
+#apiVersion: apps/v1
+#kind: Deployment
+#metadata:
+#  name: url-shortener-deployment
+#spec:
+#  replicas: 2
+#  template:
+#    spec:
+#      containers:
+#        - name: url-shortener-app
+#          image: "docker.io/notmde/url-shortener:v2"
+#          ports:
+#            - containerPort: 3000
+
+apiVersion: argoproj.io/v1alpha1
+kind: Rollout
 metadata:
   name: url-shortener-deployment
 spec:

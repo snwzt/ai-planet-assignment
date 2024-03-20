@@ -1,4 +1,5 @@
 resources:
-- deployment.yml
+# - deployment.yml
+- rollout.yml
 - service.yml
 - ingressroute.yml

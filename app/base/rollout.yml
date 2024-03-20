@@ -19,19 +19,7 @@ spec:
       containers:
         - name: url-shortener-app
           imagePullPolicy: Always
-          env:
-          - name: REDIS_URI
-            value: "redis://redis-service:6379"
-          envFrom:
-          - configMapRef:
-              name: app-config
-          resources:
-            requests:
-              memory: "16Mi"
-              cpu: "50m"
-            limits:
-              memory: "128Mi"
-              cpu: "100m"
+
   strategy:
     canary:
       steps:

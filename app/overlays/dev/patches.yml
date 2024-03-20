@@ -29,9 +29,9 @@ spec:
             - name: REDIS_URI
               value: "redis://redis-service:6379"
             - name: APP_PORT
-              value: 3000
+              value: "3000"
             - name: DEV_FLAG
-              value: 1
+              value: "1"
 
 ---
 apiVersion: v1

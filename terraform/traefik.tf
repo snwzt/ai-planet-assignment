@@ -189,9 +189,9 @@ resource "kubernetes_service" "traefik_services" {
   }
 }
 
-#resource "kubernetes_service" "traefik_web_service" {
+#resource "kubernetes_service" "traefik_canary_rollout" {
 #  metadata {
-#    name      = "traefik-web-service"
+#    name      = "canary-rollout"
 #    namespace = kubernetes_namespace.traefik_ns.metadata[0].name
 #  }
 #
@@ -203,15 +203,28 @@ resource "kubernetes_service" "traefik_services" {
 #    }
 #
 #    port {
-#      name        = "stable-rollout"
 #      port        = 80
-#      target_port = "stable-rollout"
+#      target_port = "canary-rollout"
+#    }
+#  }
+#}
+#
+#resource "kubernetes_service" "traefik_stable_rollout" {
+#  metadata {
+#    name      = "stable-rollout"
+#    namespace = kubernetes_namespace.traefik_ns.metadata[0].name
+#  }
+#
+#  spec {
+#    type = "ClusterIP" # temporary
+#
+#    selector = {
+#      app = "traefik"
 #    }
 #
 #    port {
-#      name        = "canary-rollout"
 #      port        = 80
-#      target_port = "canary-rollout"
+#      target_port = "stable-rollout"
 #    }
 #  }
 #}

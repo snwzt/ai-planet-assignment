@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: url-shortener-deployment
+spec:
+  replicas: 2
+  template:
+    spec:
+      containers:
+        - name: url-shortener-app
+          image: "docker.io/notmde/url-shortener:v2"
+          ports:
+            - containerPort: 3000
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: app-service
+spec:
+  ports:
+    - port: 80
+      targetPort: 3000
+      name: app-port

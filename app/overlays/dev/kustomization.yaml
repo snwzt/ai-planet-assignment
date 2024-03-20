@@ -1,0 +1,12 @@
+resources:
+  - ../../base
+
+namespace: dev
+
+patchesStrategicMerge:
+  - patches.yaml
+
+configMapGenerator:
+  - name: app-config
+    envs:
+      - config.properties

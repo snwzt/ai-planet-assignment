@@ -5,8 +5,3 @@ namespace: dev
 
 patchesStrategicMerge:
   - patches.yml
-
-configMapGenerator:
-  - name: app-config
-    envs:
-      - config.properties

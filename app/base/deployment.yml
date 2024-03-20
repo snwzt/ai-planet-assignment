@@ -19,8 +19,8 @@
 #      containers:
 #      - name: url-shortener-app
 #        envFrom:
-#          - configMapRef:
-#              name: app-config
+#        - configMapRef:
+#          name: app-config
 #        resources:
 #          requests:
 #            memory: "16Mi"

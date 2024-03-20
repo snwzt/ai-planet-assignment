@@ -19,9 +19,6 @@ spec:
       containers:
         - name: url-shortener-app
           imagePullPolicy: Always
-          envFrom:
-            - configMapRef:
-                name: app-config
           resources:
             requests:
               memory: "16Mi"

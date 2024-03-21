@@ -60,11 +60,11 @@ spec:
           role: canary
         annotations:
           role: canary
-        stableMetadata:
-          labels:
-            role: stable
-          annotations:
-            role: stable
+      stableMetadata:
+        labels:
+          role: stable
+        annotations:
+          role: stable
 
       trafficRouting:
         traefik:

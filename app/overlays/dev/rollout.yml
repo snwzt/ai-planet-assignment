@@ -54,9 +54,22 @@ spec:
     canary:
       canaryService: canary-rollout
       stableService: stable-rollout
+
+      canaryMetadata:
+        labels:
+          role: canary
+        annotations:
+          role: canary
+        stableMetadata:
+          labels:
+            role: stable
+          annotations:
+            role: stable
+
       trafficRouting:
         traefik:
           weightedTraefikServiceName: traefik-service
+
       steps:
         - setWeight: 30
         - pause: { }

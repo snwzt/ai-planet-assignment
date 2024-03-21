@@ -6,6 +6,7 @@ metadata:
 spec:
   selector:
     app: url-shortener
+    version: canary
   ports:
     - name: app-port
       port: 80
@@ -20,6 +21,7 @@ metadata:
 spec:
   selector:
     app: url-shortener
+    version: stable
   ports:
     - name: app-port
       port: 80

@@ -57,14 +57,10 @@ spec:
 
       canaryMetadata:
         labels:
-          role: canary
-        annotations:
-          role: canary
+          version: canary
       stableMetadata:
         labels:
-          role: stable
-        annotations:
-          role: stable
+          version: stable
 
       trafficRouting:
         traefik:

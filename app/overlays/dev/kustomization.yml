@@ -1,7 +1,5 @@
 resources:
   - ../../base
+  - rollout.yml
 
 namespace: dev
-
-patchesStrategicMerge:
-  - patches.yml

@@ -150,12 +150,7 @@ resource "kubernetes_deployment" "traefik_deployment" {
           ]
 
           port {
-            name        = "stable-rollout"
-            container_port = 80
-          }
-
-          port {
-            name        = "canary-rollout"
+            name        = "web"
             container_port = 80
           }
 
@@ -185,6 +180,26 @@ resource "kubernetes_service" "traefik_services" {
     port {
       port        =  3000
       target_port = "dashboard"
+    }
+  }
+}
+
+resource "kubernetes_service" "traefik_web_service" {
+  metadata {
+    name      = "traefik-web-service"
+    namespace = kubernetes_namespace.traefik_ns.metadata[0].name
+  }
+
+  spec {
+    type = "ClusterIP" # temporary
+
+    selector = {
+      app = "traefik"
+    }
+
+    port {
+      port        = 80
+      target_port = "web"
     }
   }
 }

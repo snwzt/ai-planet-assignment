@@ -1,31 +1,15 @@
-#apiVersion: v1
-#kind: Service
-#metadata:
-#  name: app-service
-#  namespace: default
-#spec:
-#  selector:
-#    app: url-shortener
-#  ports:
-#  - port: 80
-#    targetPort: 8080
-#    name: app-port
-#  type: ClusterIP
-
 apiVersion: v1
 kind: Service
 metadata:
   name: canary-rollout
   namespace: default
-  labels:
-    app: url-shortener-canary
 spec:
   selector:
     app: url-shortener
   ports:
     - name: app-port
       port: 80
-      targetPort: 8080
+      targetPort: 3000
 
 ---
 apiVersion: v1
@@ -33,12 +17,10 @@ kind: Service
 metadata:
   name: stable-rollout
   namespace: default
-  labels:
-    app: url-shortener-stable
 spec:
   selector:
     app: url-shortener
   ports:
     - name: app-port
       port: 80
-      targetPort: 8080
+      targetPort: 3000

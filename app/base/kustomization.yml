@@ -1,8 +1,3 @@
 resources:
-- rollout.yml
-- service.yml
-- ingressroute.yml
-- analysis.yml
-
-openapi:
-  path: rollout_cr_schema_v2.json
+  - service.yml
+  - ingressroute.yml

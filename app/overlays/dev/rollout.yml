@@ -53,14 +53,14 @@ spec:
   strategy:
     canary:
       canaryService: canary-rollout
-      stableService: stable-rollout
-
       canaryMetadata:
         labels:
-          version: canary
+          role: canary
+
+      stableService: stable-rollout
       stableMetadata:
         labels:
-          version: stable
+          role: stable
 
       trafficRouting:
         traefik:

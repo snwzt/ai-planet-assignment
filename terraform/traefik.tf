@@ -12,6 +12,11 @@ resource "helm_release" "traefik" {
   version    = "26.1.0"
 
   set {
+    name = "service.type"
+    value = "ClusterIP"
+  }
+
+  set {
     name  = "ports.websecure.expose"
     value = false
   }
@@ -186,7 +191,7 @@ resource "kubernetes_service" "traefik_web_service" {
   }
 
   spec {
-    type = "LoadBalancer"
+    type = "ClusterIP"
 
     selector = {
       app = "traefik"

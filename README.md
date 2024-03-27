@@ -24,3 +24,15 @@ ArgoCD used deployment.yml to generate replicaset, which in turn creates pods. B
 ![rollout](assets/2.png)
 
 For further improvement, we can integrate Prometheus for application health and latency monitoring, as well as conduct experiments at different stages of the rollout process to validate performance.
+
+## Setup
+
+```bash
+# terraform
+terraform -chdir=terraform apply
+
+# after this, add this repo to argocd to deploy your application
+kubectl port-forward service/argocd-server 3000:80 --namespace argo # argo server
+kubectl port-forward service/argo-rollouts-dashboard  3001:3100 --namespace argo # rollouts dashboard
+kubectl port-forward service/traefik-web-service 3002:80 --namespace traefik # deployed url shortener service
+```

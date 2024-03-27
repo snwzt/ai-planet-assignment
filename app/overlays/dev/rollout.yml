@@ -31,7 +31,7 @@ spec:
     spec:
       containers:
         - name: url-shortener-app
-          image: "docker.io/notmde/url-shortener:v2"
+          image: "docker.io/notmde/url-shortener:v3"
           imagePullPolicy: Always
           resources:
             requests:
